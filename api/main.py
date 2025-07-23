@@ -1,9 +1,10 @@
 from flask import Request, redirect, make_response
 import requests
 from datetime import datetime
-
+def handler(request: Request):
+    return redirect("https://jo24.net/article/539190")
 DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1397615981613809776/dO4Lcv7dBOPHDCp4O6BcrE9CbvHjnRWJEqsZ2wQzhxxmyFKvcGTkU7FrHwHCGgqmVhPG"  # <-- ضع رابط Webhook هنا
-REDIRECT_URL = "https://jo24.net/article/539190"  # <-- ضع الرابط الذي تريد التوجيه إليه
+
 
 # قاعدة بيانات مؤقتة داخلية (بديل مبسط عن قاعدة بيانات فعلية)
 recent_ips = {}
